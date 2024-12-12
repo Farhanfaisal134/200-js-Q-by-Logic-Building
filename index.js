@@ -489,11 +489,128 @@ simulateOperation(true) // Try with 'true' or 'false'
 // Agar sabhi reject ho jaayein, to ek AggregateError throw hota hai.
 // Promise.allSettled: Yeh har promise ka status(resolved ya rejected) aur result ek array mein deta hai,
 // chahe promise resolve ho ya reject.Koi bhi promise fail ho jaye to bhi ye overall resolve hota hai, unlike Promise.all.
+// Day 4 => Next 10 Q
+// Q=> 31 Implement Debounce;
+// Ans:
+function debounce(func, dealay) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func(...args)
+    }, dealay);
+  };
+};
 
+const log = debounce(console.log, 1000);
+log('Hello'); // cancelled - 10ms
 
+// Q=> 32 Implement Throttle;
+// Ans:
+function throttle(func, dealay) {
+  let isThrottling = false;
+  return (...args) => {
+    if (!isThrottling) {
+      func(...args)
+      isThrottling = true;
+      setTimeout(() => {
+        isThrottling = false;
+      }, limit);
+    };
+  }
+};
 
+function shoot() {
+  console.log("Function called");
+};
 
+const throttledFunction = throttle(shoot, 1000);
+// Example usage
+throttledFunction();
 
+// Q=> 33: Function Expressions and Hoisting;
+// Ans:
+sayHi(); //Error: sayHi is not a function beacuse func expression host nhi huta
+var sayHi = function () {
+  console.log('Hi!');
+};
+
+// Q=> 34: Variable Hoisting Inside Functions;
+// Ans:
+var x = 10
+function testvalue() {
+  console.log(x);
+  var x = 20;
+};
+testvalue();
+
+// Q=> 35: Shadowing and Hoisting in Conditional Statements
+// Why does the global variable pname remain unchanged in the following code ?
+// Ans:
+var pname = 'name 1';
+function print() {
+  pname = 'name 2';
+  if (1 == 2) {
+    var pname = 'name 3';
+  };
+};
+print();
+console.log(pname); // Output?
+
+// Q=> 36: WeakMap
+// Ans: key - value pairs ko store karta hai(jahaan key sirf object ho sakta hai).
+let weakMap = new WeakMap();
+let obj = { name: "Farhan" };
+weakMap.set(obj, "Developer");
+
+console.log(weakMap.get(obj)); // Output: Developer
+// Agar 'obj' ko null ya undefined kar do
+obj = null;
+// WeakMap se 'obj' garbage collect ho jayega, kyunki ab koi reference nahi bacha us object ka.
+
+// Q=> 37: WeakMap
+// Ans:WeakSet sirf objects ko set ki tarah store karta hai(values only, no key - value pairs).
+let weakSet = new WeakSet();
+let obj1 = { animal: "Horse" };
+let obj2 = { animal: "Dog" };
+
+weakSet.add(obj1);
+weakSet.add(obj2);
+console.log(weakSet.has(obj1)); // Output: true
+// Agar 'obj1' ko null ya undefined kar do
+obj1 = null;
+// WeakSet se 'obj1' garbage collect ho jayega, kyunki ab koi reference nahi bacha us object ka.
+
+// Q=> 38: Symbal?
+// Ans:
+const salary = Symbol('sl');
+
+const user = {
+  name: 'Suman',
+  age: 500,
+  email: 'suman@gmail.com',
+  [salary]: 984734838
+};
+
+console.log(user[salary]) // Output=> 984734838
+console.log(Object.keys(user));// Output? [ 'name', 'age', 'email' ] Symbal key lopp ka through access nhi kr sagta;
+
+// Q=> 39: How to genrate randomHexColor;
+// Ans:
+const randomHexColor = () => `#${Math.random().toString(16).slice(2, 8).padEnd(6, 0)}`;
+
+console.log(randomHexColor()); // Output=> #d7beab
+
+// Q=> 40: How to genrate 1 to 5 no using while loop;
+// Ans:
+function numberRange(start, end) {
+  while (start < end) {
+    console.log(a);
+    a++
+  };
+};
+
+console.log(numberRange(0, 5));
 
 
 
