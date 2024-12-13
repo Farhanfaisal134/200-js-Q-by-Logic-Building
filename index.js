@@ -612,5 +612,202 @@ function numberRange(start, end) {
 
 console.log(numberRange(0, 5));
 
+// Day=> 5 file=> 08+09:
+// Q=> 41 Compact Object:
+// How can you remove falsy values (like null, 0, false, etc.) from an object or array, including nested structures?
+// Ans:
+function compactObject(obj) {
+  if (obj === null) return null;
+  if (typeof obj !== "object") return obj;
+  if (Array.isArray(obj)) {
+    return obj.filter(Boolean).map(compactObject);
+  };
+
+  return Object.keys(obj).reduce((acc, key) => {
+    const value = compactObject(obj[key])
+    if (Boolean(value)) acc[key] = value
+    return acc;
+  }, {});
+};
+
+// Example Usage:
+console.log(compactObject([null, 0, 5, [0], [false, 16]]));
+console.log(compactObject({ a: null, b: 0, c: { d: false, e: 10 } }));
+// Q=> 42 Join Two Arrays of Objects by ID:
+// How can you merge two arrays of objects based on their id, ensuring updated values for matching IDs and retaining unmatched objects ?
+// Ans:
+function join(arr1, arr2) {
+  let result = {};
+  for (let i = 0; i < arr1.length; i++) {
+    result[arr1[i].id] = arr1[i];
+  };
+
+  for (let i = 0; i < arr2.length; i++) {
+    if (result[arr2[i].id]) {
+      for (const key in arr2[i]) {
+        result[arr2[i].id][key] = arr2[i][key]
+      };
+    } else {
+      result[arr2[i].id] = arr2[i];
+    };
+  };
+  return Object.values(result);
+};
+
+// Example Usage:
+console.log(
+  join(
+    [
+      { "id": 1, "x": 2, "y": 3 },
+      { "id": 2, "x": 3, "y": 6 }
+    ],
+    [
+      { "id": 2, "x": 10, "y": 20 },
+      { "id": 3, "x": 0, "y": 0 }
+    ])
+);
+// Q=> 43 Chunk an Array:
+// How can you split an array into smaller arrays of a specified size ?
+// Ans:
+function chunk(arr, size) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i += size) {
+    newArr.push(arr.slice(i, i + size));
+  };
+  return newArr;
+};
+
+console.log(chunk([1, 2, 3, 4, 5], 3));
+// Q=> 44 Check if an Object is Empty:
+// How do you determine if an object has no properties ?
+// Ans:
+function isEmptyObject(obj) {
+  return Object.keys(obj).length === 0 ? "empty" : "Not Empty";
+};
+
+// Example Usage:
+console.log(isEmptyObject({ name: "Farhan" })); // Output: "it's not empty"
+// (b) console.log(JSON.stringify(obj1) === JSON.stringify(obj2))
+// Q=> 45 Deep Cloning of an Object:
+// How can you create a deep clone of an object, ensuring nested objects and special types like Date are copied correctly ?
+// Ans:
+function createDeepClone(obj) {
+  const copyObj = Array.isArray(obj) ? [] : {};
+  for (const key in obj) {
+    const value = obj[key];
+    if (value instanceof Date) {
+      copyObj[key] = new Date(value.getTime())
+    } else if (typeof value !== "object") {
+      copyObj[key] = value
+    } else {
+      copyObj[key] = createDeepClone(value)
+    };
+  };
+  return copyObj;
+};
+
+const copyObj = createDeepClone({
+  a: 1,
+  b: 2,
+  c: {
+    d: 5
+  },
+  e: new Date(),
+  f: undefined
+});
+
+// Example Usage;
+console.log(copyObj);
+// Q=> 46 FizzBuzz Implementation:
+// Ans:
+const fizzbuzz = (sNum, eNum) => {
+  let arr = [];
+  for (let i = sNum; i <= eNum; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      arr.push("fizzbuzz");
+    } else if (i % 3 === 0) {
+      arr.push("fizz");
+    } else if (i % 5 === 0) {
+      arr.push("buzz");
+    } else {
+      arr.push(i);
+    }
+  }
+  return arr;
+};
+
+// Example Usage:
+console.log(fizzbuzz(1, 15));
+
+// Q=> 47 Generate Sequence Using Array Methods:
+// How can you generate a sequence of numbers using Array.from() or[...Array()]?
+// Ans:
+// (a)
+[...Array(5 * 5).keys()].map((item) => console.log(item))
+
+// (b)
+Array.from({ length: 5 * 5 }, (_, index) => {
+  console.log(index);
+});
+// Q=> 48 Equality Check Using expect Implement a function expect(val) that returns an object with two methods:
+// toBe(val1) checks if val equals val1.If true, it returns true; otherwise, it throws an error "Not Equal".
+// notToBe(val1) checks if val does not equal val1.If true, it returns true; otherwise, it throws an error "Equal".
+// Ans:
+function expect(val) {
+  return {
+    toBe(val1) {
+      return val === val1 ? true : "Not Equal"
+    },
+    notToBe(val1) {
+      return val !== val1 ? true : "Equal"
+    }
+  };
+};
+
+// Example Usage:
+console.log(expect(5).toBe(5)) // true
+console.log(expect(5).notToBe(5)); // throws "Equal"
+// Q=> 49 Create a Counter:
+// Write a function createCounter(init) that creates a counter object with the following methods:
+// increment(): Increases the count by 1 and returns the updated value.
+// decrement(): Decreases the count by 1 and returns the updated value.
+// reset(): Resets the counter to its initial value and returns the reset value:
+// Ans:
+function createCounter(init) {
+  let initial = init;
+  return {
+    increment() {
+      return ++init
+    },
+    decrement() {
+      return --init
+    },
+    reset() {
+      return init = initial
+    }
+  };
+};
+
+// Example Usage:
+const counter = createCounter(5);
+console.log(counter.increment()); // 6
+console.log(counter.decrement()); // 5
+console.log(counter.reset()); // 5
+// Q=> 50 Function Composition (Right to Left Execution):
+// Create a compose function that takes an array of functions and returns a new function.
+// The new function executes the array of functions in reverse  order, passing the result of each function to the next.
+// Ans:
+function compose(functions) {
+  return (x) => {
+    for (let i = functions.length - 1; i >= 0; i--) {
+      x = functions[i](x)
+    };
+    return x;
+  };
+};
+// Example Usage:
+const fn = compose([x => x + 1, x => x * x, x => 2 * x]);
+console.log(fn(4)); // 65
+
 
 
