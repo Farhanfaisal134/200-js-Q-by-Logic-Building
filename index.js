@@ -809,5 +809,403 @@ function compose(functions) {
 const fn = compose([x => x + 1, x => x * x, x => 2 * x]);
 console.log(fn(4)); // 65
 
+// Day 6 => Next 10 Q file (08 + 11)
+// Q=> 51 Count Arguments?
+// Ans:
+function countArgs(...args) {
+  return args.length
+};
 
+// Example Usage
+console.log(countArgs(1, 2, 3));
+// Q=> 52 Allow One Function Call?
+// Ans:
+function once(fn) {
+  let called = false;
+  return (...args) => {
+    if (!called) {
+      called = true;
+      return fn(...args)
+    };
+  };
+};
 
+// Example Usage:
+const onceFn = once((a, b, c) => a + b + c);
+console.log(onceFn(1, 2, 3));
+// Q=> 53 Memoize Function?
+// Ans:
+function memoizeSquare() {
+  let chache = {};
+  return (n) => {
+    if (n in chache) {
+      console.log("returned from cache")
+      return chache[n]
+    } else {
+      chache[n] = n + n
+      return chache[n]
+    }
+  };
+};
+
+const memoSquare = memoizeSquare()
+console.log(memoSquare(5)) // calculate
+console.log(memoSquare(5)) // returns from cache
+// Q=> 54 Sleep Function?
+// Ans:
+async function sleep(millis) {
+  await new Promise(resolve => setTimeout(resolve, millis));
+};
+
+let t = Date.now()
+sleep(100).then(() => console.log(Date.now() - t)) // 100
+// Q=> 55 Cancelable Timer?
+// Ans:
+function cancellable(fn, args, t) {
+  function cancelFn() {
+    clearTimeout(timer)
+  };
+
+  const timer = setTimeout(() => {
+    const result = fn(...args);  // Yeh function ko args ke sath call kar raha hai
+    console.log('Result:', result);
+  }, t);
+
+  return cancelFn;
+};
+
+const cancel = cancellable((x) => x * 5, [2], 20); // Returns the cancel function
+
+// Example Usage:
+setTimeout(() => {
+  cancel();  // After 50ms, cancel the original timer
+  console.log("Cancelled");
+}, 50);
+// Q=> 56 Cancelable Repeated Timer?
+// Ans:
+function cancellable(fn, args, t, cancelTimeMs) {
+  fn(...args);
+
+  const intervalId = setInterval(() => {
+    fn(...args);  // Har `t` milliseconds par function ko call karna
+  }, t);
+
+  const cancelFn = function () {
+    clearInterval(intervalId);  // Interval ko clear karna
+  };
+
+  setTimeout(cancelFn, cancelTimeMs);
+  return cancelFn;
+};
+
+// Example Usage
+const cancel1 = cancellable((x) => console.log(x * 5), [2], 1000, 5000);
+setTimeout(() => cancel1(), 3000); // Manually stop after 3000ms
+// Q=> 57 Expiring Key-Value Store?
+// Ans:
+class ExpiringKeyValueStore {
+  constructor() {
+    this.store = {};
+  };
+
+  set(key, value, duration) {
+    const currentTime = Date.now();
+    const expirationTime = currentTime + duration;
+    const isExisting = this.store[key] !== undefined;
+    this.store[key] = { value, expirationTime };
+    return isExisting;
+  };
+
+  get(key) {
+    const entry = this.store[key]
+    for (const key in this.store) {
+      if (this.store[key].expirationTime > Date.now()) {
+        return entry.value;
+      };
+      return -1
+    };
+  };
+
+  count() {
+    let count = 0;
+    for (const key in this.store) {
+      if (this.store[key].expirationTime > Date.now()) {
+        count++;
+      };
+    };
+    return count;
+  };
+};
+
+// Example usage
+const kvStore = new ExpiringKeyValueStore();
+
+// Set keys with values and durations
+console.log(kvStore.set(1, 100, 3000)); // false (key did not exist before)
+console.log(kvStore.set(1, 150, 3000)); // true (key 1 already existed, value and duration updated)
+console.log(kvStore);
+
+// Get values
+console.log(kvStore.get(1)); // 150 (within 3 seconds)
+
+// Wait for 4 seconds
+setTimeout(() => {
+  console.log(kvStore.get(1)); // -1 (key 1 expired)
+  console.log(kvStore.count()); // 1 (only key 2 is un-expired)
+}, 4000);
+// Q=> 58 Count Volwels?
+// Ans:
+function countVowels(sent) {
+  const vowels = ["a", "e", "i", "o", "u"];
+  let count = 0;
+
+  for (const ele of sent) {
+    if (vowels.includes(ele)) {
+      count++
+    };
+  };
+  return count;
+};
+
+// Example Usage:
+console.log(countVowels("farhan"));
+// Q=> 59 Reverse Odd Words in a sentence?
+// Ans:
+function reverseOdd(str) {
+  function reverseString(str) {
+    return str.split('').reverse().join('');
+  };
+
+  const words = str.split(' ');
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length % 2 !== 0) {
+      words[i] = reverseString(words[i]);
+    };
+  };
+
+  return words.join(' ');
+};
+
+// Exampel Usage:
+console.log(reverseOdd("One Two Four"));
+// Q=> 60 Check Number(121) is Even || Odd?
+// Ans:
+function oddishOrEvenish(num) {
+  const digits = num.toString().split('').map(Number);
+  const sum = digits.reduce((acc, digit) => acc + digit, 0);
+
+  return sum % 2 === 0 ? "Evenish" : "Oddish";
+}
+
+// Exampele Usage:
+console.log(oddishOrEvenish(121));
+// Day 7 => Next 10 Q file (11)
+// Q=> 61 Demonstrate how to use Object.create() to implement prototypal inheritance.
+// Ans:
+const user1 = {
+  name: "Zayn",
+  age: 20,
+
+  introduce: function () {
+    return `Hi my name is ${this.name} and i m ${this.age} year old`
+  }
+};
+
+const student = Object.create(user1);
+student.studentId = '12345';
+
+console.log(student.name);
+console.log(student.studentId);
+console.log(student.introduce());
+// Q=> 62 get and set methods in classes
+// Ans:
+class Course {
+  constructor(name) {
+    this._name = name; // Use a private-like property (_name convention)
+  };
+
+  // Getter
+  get name() {
+    return this._name;
+  };
+
+  // Setter
+  set name(newName) {
+    this._name = newName;
+  };
+};
+
+// Usage
+const course = new Course("Web Dev");
+console.log(course.name); // Accessing using getter: "Web Dev"
+course.name = "Frontend Dev"; // Updating using setter
+console.log(course.name); // "Frontend Dev"
+// Q=> 63 Create a Product constructor function with a method to calculate the total value of a product.
+// Ans:
+function Product(name, price, quantity) {
+  this.name = name;
+  this.price = price;
+  this.quantity = quantity
+};
+
+Product.prototype.calculateTotalValue = function () {
+  return this.price * this.quantity
+};
+
+const product1 = new Product("Widget", 10, 5);
+const totalValue1 = product1.calculateTotalValue();
+console.log(totalValue1);
+// Q=> 64 Write a function to create and display a multidimensional array and reverse its display.
+// Ans:
+function createMultidimensionalArray(rows, columns) {
+  let arr = [];
+  for (let i = 0; i < rows; i++) {
+    let row = [];
+    for (let j = 0; j < columns; j++) {
+      row.push(i + j)
+    }
+    arr.push(row)
+  };
+  return arr
+};
+
+//example usage
+const multiArray = createMultidimensionalArray(3, 4);
+// (b) Display
+function display(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i].join(" "));
+  }
+};
+
+// example usage
+display();
+// (c) Display Reverse
+function reverseDisplay(arr) {
+  for (let i = arr.length - 1; i >= 0; i--) {
+    console.log(arr[i].reverse().join(" "));
+  };
+};
+
+// example usage
+reverseDisplay();
+// Q=> 65 Use object destructuring to extract specific properties and group the rest into another object.
+// Ans:
+const person = {
+  fName: 'John',
+  lName: 'Doe',
+  age: 20,
+  city: 'New York'
+};
+
+const { fName, lName, ...left } = person;
+const { age, city } = left;
+
+// Example Usage
+console.log(fName);
+console.log(age);
+// Q=> 66 Explain the concepts of Encapsulation, Abstraction, Inheritance, and Polymorphism in JavaScript.
+// Ans:
+// Encapsulation: Object ke andar data ko protect karna aur sirf zaroori cheezain access karne dena.
+// Abstraction: Sirf important details show karna aur unnecessary complexity ko hide karna.
+// Inheritance: Ek class doosri class se properties aur methods ko inherit karti hai.
+// Polymorphism: Ek function ko alag alag forms mein use karna, jahan har form ka alag behavior hota hai.
+// Q=> 67 Encapsulation Example Code.
+// Ans:
+class BankAccount {
+  #balance; // Private property
+
+  constructor(balance) {
+    this.#balance = balance;
+  };
+
+  deposit(amount) {
+    this.#balance += amount;
+  };
+
+  getBalance() {
+    return this.#balance; // Controlled access
+  };
+};
+
+// Example Usage
+const account = new BankAccount(1000);
+account.deposit(500);
+console.log(account.getBalance()); // 1500
+// console.log(account.#balance); // Error: Private property
+// Q=> 68 Abstraction Example Code.
+// Ans:
+class CoffeeMachine {
+  makeCoffee() {
+    this.#heatWater();
+    this.#brewCoffee();
+    console.log("Coffee is ready!");
+  }
+
+  #heatWater() {
+    console.log("Heating water...");
+  }
+
+  #brewCoffee() {
+    console.log("Brewing coffee...");
+  }
+}
+
+// Example Usage
+const machine = new CoffeeMachine();
+machine.makeCoffee();
+// machine.#heatWater(); // Error: Private method
+// Q=> 69 Inheritance Example Code.
+// Ans:
+class Animal {
+  speak() {
+    console.log("Animal makes a sound.");
+  };
+};
+
+class Dog extends Animal {
+  speak() {
+    console.log("Dog barks!");
+  };
+};
+
+// Example Usage.
+const animal = new Animal();
+animal.speak(); // Animal makes a sound.
+
+// Example Usage.
+const dog = new Dog();
+dog.speak(); // Dog barks!
+// Q=> 70 Polymorphism Example Code.
+// Ans:
+class Shape {
+  area() {
+    return "Area is not defined.";
+  }
+}
+
+class Circle extends Shape {
+  constructor(radius) {
+    super();
+    this.radius = radius;
+  }
+
+  area() {
+    return Math.PI * this.radius ** 2;
+  }
+}
+
+class Rectangle extends Shape {
+  constructor(width, height) {
+    super();
+    this.width = width;
+    this.height = height;
+  }
+
+  area() {
+    return this.width * this.height;
+  }
+}
+
+const shapes = [new Circle(5), new Rectangle(4, 6)];
+shapes.forEach(shape => console.log(shape.area()));
