@@ -1209,3 +1209,51 @@ class Rectangle extends Shape {
 
 const shapes = [new Circle(5), new Rectangle(4, 6)];
 shapes.forEach(shape => console.log(shape.area()));
+
+// Day 8 => Next 10 Q file (11 + )
+// Q=> 71  Write a function to reverse only the odd - length words in a sentence.
+// Ans:
+function oddishOrEvenish(num) {
+  const digits = num.toString().split('').map(Number);
+  const sum = digits.reduce((acc, digit) => acc + digit, 0);
+
+  return sum % 2 === 0 ? "Evenish" : "Oddish";
+};
+
+// Example Usage
+console.log(oddishOrEvenish(121));
+// Q=> 72 Implement a function to determine if a number is "Oddish" or "Evenish" based on the sum of its digits.
+// Ans:
+function reverseOdd(sentence) {
+  function reverseString(str) {
+    return str.split("").reverse().join("")
+  };
+
+  const words = sentence.split(' ');
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length % 2 !== 0) {
+      words[i] = reverseString(words[i])
+    };
+  };
+
+  return words.join(" ");
+};
+
+// Example Usage
+console.log(reverseOdd("One Two Four"));
+// Q=> 73
+// Ans:
+// Q=> 74
+// Ans:
+// Q=> 75
+// Ans:
+// Q=> 76
+// Ans:
+// Q=> 77
+// Ans:
+// Q=> 78
+// Ans:
+// Q=> 79
+// Ans:
+// Q=> 80
+// Ans:
