@@ -1241,19 +1241,101 @@ function reverseOdd(sentence) {
 
 // Example Usage
 console.log(reverseOdd("One Two Four"));
-// Q=> 73
+// Q=> 73 // Write a function that takes an object as argument
+// In some cases the object contains other objects with some deeply nested properties
+// Return the property 'b' of object 'a' inside the original object if it exists
+// If not, return undefined;
 // Ans:
-// Q=> 74
+function myFunction(obj) {
+  return obj?.a?.b;
+};
+
+// Example usage:
+console.log(myFunction({ a: { b: 42 } })); // 42
+// Q=> 74 Remove Duplicate From An Array.
 // Ans:
-// Q=> 75
+function removeDuplicateEle(arr) {
+  let uniEle = []
+  for (const item of arr) {
+    if (uniEle.indexOf(item) === -1) {
+      uniEle.push(item)
+    };
+  };
+  return uniEle;
+}
+
+// Example Usage
+console.log(removeDuplicateEle([1, 2, 2, 3, 4, 4]));
+// Q=> 75  Check for Palindrome 🔄
+// Determined if words or numbers were palindromes!
 // Ans:
-// Q=> 76
+function isPalindrome(str) {
+  return str === str.split("").reverse().join("");
+};
+
+// Example Usage
+console.log(isPalindrome("racecar"));
+// Q=> 76 Check for Anagrams 🔤
+// Validated if two words were anagrams!
 // Ans:
-// Q=> 77
+function anagrams(str1, str2) {
+  return str1.split("").sort().join("") === str2.split("").sort().join("");
+};
+
+// Example Usage
+console.log(anagrams("listen", "slient"));
+// Q=> 77 Calculate Total Price 🛒
+// Efficiently computed total prices for grocery lists by iterating over objects.
 // Ans:
-// Q=> 78
+function getTotalPrice(groceries) {
+  let total = 0;
+
+  for (const item of groceries) {
+    const itemPrice = item.quantity * item.price;
+    total += itemPrice;
+  }
+  return total;
+};
+
+// Example Usage
+console.log(getTotalPrice([
+  { product: "Milk", quantity: 1, price: 1.50 },
+  { product: "Cereals", quantity: 1, price: 2.50 }
+]));
+// Q=> 78  Detect 'Boom' in Numbers 💥
+// Checked arrays for the presence of specific digits!
 // Ans:
-// Q=> 79
+function sevenBoom(arr) {
+  for (const element of arr) {
+    if (element.toString().includes("5")) {
+      return "Boom!";
+    };
+  };
+};
+
+// Example Usage
+console.log(sevenBoom([1, 2, 3, 4, 5, 6, 0]));
+// Q=> 79 Binary Conversion from Text 💻
+// Converted text like "Zero One" into binary strings.
 // Ans:
-// Q=> 80
+function textToNumberBinary(str) {
+  const words = str.split(" ").filter((item) => item.toLowerCase() === "zero" || item.toLowerCase() === "one");
+  let binaryString = words.map((word) => (word.toLowerCase() === "one" ? "1" : "0")).join("");
+  if (binaryString.length % 8 !== 0) {
+    binaryString = binaryString.slice(0, 0);
+  }
+
+  return binaryString;
+};
+
+// Example Usage
+console.log(textToNumberBinary("Zero one zero ONE zero one zero one"));
+// Q=> 80 Count Consonants and Vowels ✍️
+// Counted consonants and vowels for every word in a sentence.
 // Ans:
+function stringCode(sentence) {
+  return sentence.split(" ").map((word) => `${word.replace(/[^aeiou]/gi, "").length} ${word.replace(/[^bcdfghjklmnpqrstvwxyz]/gi, "").length}`);
+};
+
+// Example Usage.
+console.log(stringCode("Happy Birthday To Me")); // ['4 1', '6 2', '1 1', '1 1']
