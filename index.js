@@ -1210,7 +1210,7 @@ class Rectangle extends Shape {
 const shapes = [new Circle(5), new Rectangle(4, 6)];
 shapes.forEach(shape => console.log(shape.area()));
 
-// Day 8 => Next 10 Q file (11 + )
+// Day 8 => Next 10 Q file (11 + 12)
 // Q=> 71  Write a function to reverse only the odd - length words in a sentence.
 // Ans:
 function oddishOrEvenish(num) {
@@ -1339,3 +1339,141 @@ function stringCode(sentence) {
 
 // Example Usage.
 console.log(stringCode("Happy Birthday To Me")); // ['4 1', '6 2', '1 1', '1 1']
+// Day 9 => Next 10 Q file (new)
+// Q=> 81 Find the max count of consecutive 1’s in an array.
+// Ans:
+function maxConsecutiveOnes(arr) {
+  let maxCount = 0;
+  let currentCount = 0;
+  for (const num of arr) {
+    if (num === 1) {
+      currentCount++
+      maxCount = Math.max(maxCount, currentCount)
+    } else {
+      currentCount = 0;
+    };
+  };
+  return maxCount;
+};
+
+// Example Usage
+console.log(maxConsecutiveOnes([1, 1, 0, 1, 1, 1, 0, 1, 1])); // Output: 3
+// Q=> 82 Given 2 arrays that are sorted [0,3,4,31] and [4,6,30]. Merge them and sort [0,3,4,4,6,30,31].
+// Ans:
+function margeArr(arr1, arr2) {
+  let newArr = arr1.concat(arr2)
+  return newArr.sort((a, b) => a - b)
+};
+
+// Example Usage
+console.log(margeArr([0, 3, 4, 31], [4, 6, 30]));
+// Q=> 83 Create a function which will accepts two arrays arr1 and arr2. The function should return true if every value in arr1 has its corresponding value squared in array2. The frequency of values must be same.
+// Ans:
+function areArraysSquared(arr1, arr2) {
+  arr1.sort((a, b) => a - b);
+  arr2.sort((a, b) => a - b);
+
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr2[i] !== arr1[i] * arr1[i]) {
+      return false; // Return false agar square match nahi karta
+    }
+  };
+  return true;
+};
+
+// Example Usage
+console.log(areArraysSquared([1, 2, 3], [1, 4, 9]));  // Output: true
+// Q=> 84 Given two strings. Find if one string can be formed by rearranging the letters of other string.
+// Ans:
+function areStringsRearrangeable(str1, str2) {
+  // Agar lengths match nahi karti, toh directly false return kar do
+  if (str1.length !== str2.length) {
+    return false;
+  };
+
+  const sortedStr1 = str1.split("").sort().join("");
+  const sortedStr2 = str2.split("").sort().join("");
+
+  return sortedStr1 === sortedStr2;
+};
+
+// Example Usage
+console.log(areStringsRearrangeable("listen", "silent"));  // Output: true
+// Q=> 85  Write logic to get unique objects from below array.
+// I / P: [{ name: "sai" }, { name: "Nang" }, { name: "sai" }, { name: "Nang" }, { name: "111111" }];
+// Ans:
+function getUniqueObjects(arr) {
+  const uniqueNames = new Set();
+
+  return arr.filter((item) => {
+    if (!uniqueNames.has(item.name)) {
+      uniqueNames.add(item.name); // Add name to the set
+      return true; // Keep this item in the filtered result
+    }
+    return false; // Skip this item if the name is already in the set
+  });
+}
+
+const inputArray = [
+  { name: "sai" },
+  { name: "Nang" },
+  { name: "sai" },
+  { name: "Nang" },
+  { name: "111111" },
+];
+
+// Example Usage
+console.log(getUniqueObjects(inputArray));  // O/P: [{name: "sai"},{name:"Nang"}{name: "111111"}
+// Q=> 86 Write a JavaScript function to check if a given number is prime.
+// Ans:
+function isPrime(num) {
+  for (let i = 2; i < Math.sqrt(num); i++) {
+    if (num % i !== 0) return true
+  };
+  return false;
+};
+
+// Example Usage
+console.log(isPrime(7));
+// Q=> 87 Write a JavaScript program to find the largest element in a nested array.
+// I/P  [[3, 4, 58], [709, 8, 9, [10, 11]], [111, 2]]
+// Ans:
+function findMaxNumInNesteadArr(arr) {
+  return arr.flat().sort((a, b) => b - a)[0];
+};
+
+// Example Usage
+console.log(findMaxNumInNesteadArr([[3, 4, 58], [709, 8, 9, [10, 11]], [111, 2]]));
+// Q=> 88 Write a JavaScript function that returns the Fibonacci sequence up to a given number of terms.
+// Ans:
+function fibonacciSequence(num) {
+  let fib = [0, 1];
+
+  for (let i = 2; i <= num; i++) {
+    fib.push(fib[i - 1] + fib[i - 2]);
+  };
+  return fib;
+};
+
+// Example Usage
+console.log(fibonacciSequence(5));
+// Q=> 89 Given a string, write a javascript function to count the occurrences of each character in the string.
+// Ans:
+function charOccurrences(str) {
+  let obj = {};
+  for (const ele of str) {
+    obj[ele] = obj[ele] ? obj[ele] += 1 : obj[ele] = 1
+  };
+  return obj
+};
+
+// Exampel Usage
+console.log(charOccurrences("hallo"));
+// Q=> 90  Write a javascript function that sorts an array of numbers in ascending order.
+// Ans:
+function arrSortByAssec(arr) {
+  return arr.sort((a, b) => a - b)
+};
+
+// Example Usage
+console.log(arrSortByAssec([9, 8, 7]));
