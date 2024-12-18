@@ -1477,3 +1477,168 @@ function arrSortByAssec(arr) {
 
 // Example Usage
 console.log(arrSortByAssec([9, 8, 7]));
+
+// Day 10 => Next 10 Q file (new + 13)
+// Q=> 91  Write a javascript function that sorts an array of numbers in descending order.
+// Ans:
+function arrSortByDesse(arr) {
+  return arr.sort((a, b) => b - a)
+};
+
+// Example Usage.
+console.log(arrSortByDesse([1, 2, 3]));
+// Q=> 92  Write a javascript function that reverses the order of words in a sentence without using the built-in reverse() method.
+// Ans:
+function wordRev(sentence) {
+  sentence = sentence.split(" ");
+  let updatedSen = [];
+  for (let i = sentence.length - 1; i >= 0; i--) {
+    updatedSen.push(sentence[i])
+  };
+  return updatedSen.join(" ")
+};
+
+// Example Usage
+console.log(wordRev("i Love Js"));
+// Q=> 93 Implement a javascript function that flattens a nested array into a single-dimensional array.
+// Ans:
+function flatArr(arr) {
+  let newArr = [];
+  for (const ele of arr) {
+    if (!Array.isArray(ele)) {
+      newArr.push(ele)
+    } else {
+      newArr.push(...flatArr(ele))
+    }
+  };
+  return newArr
+};
+
+// Example Usage
+console.log(flatArr([1, 2, [2, 3, [3, 4]]]));
+// Q=> 94 Write a function to find all subsets of an array iteratively.
+// Ans:
+function findSubsetsIterative(arr) {
+  let subsets = [[]]; // Initially, empty subset
+
+  for (const num of arr) {
+    subsets = [...subsets, ...subsets.map((set) => [...set, num])];
+  };
+  return subsets;
+};
+
+// Example Usage
+console.log(findSubsetsIterative([1, 2])); // Output: [[], [1], [2], [1, 2]]
+// Q=> 95 Implement functions to calculate the maximum profit and maximum loss from a given array of stock prices.
+// Ans:
+// (a) Max Profit.
+function maxProfit(arr) {
+  let totalProfit = 0
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      let profit = arr[j] - arr[i]
+      if (profit > totalProfit) {
+        totalProfit = profit
+      };
+    };
+  };
+  return totalProfit
+};
+
+const prices = [7, 1, 5, 3, 6, 4];
+const profit = maxProfit(prices);
+console.log(profit);
+// (b) Max Loss.
+function maxLoss(arr) {
+  let loss = 0;
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      let everyLoss = arr[i] - arr[j];  // Subtract buying price from selling price
+      if (everyLoss > loss) {
+        return loss = everyLoss;
+      };
+    };
+  };
+  return loss;
+};
+
+// Example Usage
+console.log(maxLoss([7, 6, 4, 3, 1])); // Output: 6
+// Q=> 96  Create a pyramid pattern with #.
+// Ans:
+// let n = 5
+// for (let i = 1; i <= n; i++) {
+//   console.log(' '.repeat(n - i) + '#'.repeat(i * 2 - 1) + ' '.repeat(n - i))
+// };
+// Output 🔽
+//    #
+//   ###
+//  #####
+// #######
+//#########
+// Q=> 97 Create a staircase pattern with #.
+// Ans:
+// let n = 5;  // Number of steps
+// for (let i = 1; i <= n; i++) {
+//   console.log('#'.repeat(i));
+// };
+
+// Output 🔽
+// #
+// ##
+// ###
+// ####
+// #####
+// ######
+// Q=> 98 Explain how var, let, and closures affect the behavior of setTimeout in a loop.
+// Ans:
+// for(var i = 1; i <= 3; i++){
+//   setTimeout(()=>{
+//        console.log(i);
+//   }, 1200);
+// };
+
+// for (var i = 1; i <= 3; i++) {
+//   (function (i) {
+//     setTimeout(() => {
+//       console.log(i);  // Correct value of 'i' will be printed for each iteration
+//     }, 1200);
+//   })(i);
+// };
+
+// &
+
+// for(let i = 1; i <= 3; i++){
+//   setTimeout(()=>{
+//        console.log(i);
+//   }, 1200);
+// };
+
+// Output is
+// 1
+// 2
+// 3
+// Q=> 99 Write a function to find the character that appears the most in a string.
+// Ans:
+function maxChar(str) {
+  const usedChars = {};
+  for (const char of str) {
+    usedChars[char] = usedChars[char] ? usedChars[char] + 1 : 1;
+  };
+
+  // console.log(usedChars);//{F: 1, a: 2, r: 1, h: 1, n: 1}
+  return Object.keys(usedChars).sort((a, b) => usedChars[b] - usedChars[a])[0];
+};
+
+// Example Usage
+console.log(maxChar("Farhan"));
+// Q=> 100 How To Counts Digit In A Number.
+// Ans:
+function countDigits(num) {
+  // Number ko string mein convert karo, phir uski length return karo
+  return Math.abs(num).toString().length;
+};
+
+// Example Usage
+console.log(countDigits(121));
+// Day 11 => Next 10 Q file (13 + )
