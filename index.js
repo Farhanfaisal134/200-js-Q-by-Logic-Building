@@ -1641,4 +1641,169 @@ function countDigits(num) {
 
 // Example Usage
 console.log(countDigits(121));
-// Day 11 => Next 10 Q file (13 + )
+// Day 11 => Next 10 Q file (13 + 14)
+// Q=> 101 calculate sumOfDighits.
+// Ans.
+function sumOfDigits(num) {
+  return num
+    .toString()
+    .split('')
+    .map(Number)
+    .reduce((sum, digit) => sum + digit, 0);
+};
+
+// Example Usage
+console.log(sumOfDigits(1287));
+// Q=> 102 call PollyFill.
+// Ans.
+// function Introduce(status, salary, test1, test2) {
+//   console.log(`Myself ${this.name}, I am ${this.age} year old and I am ${status} and my salary is ${salary}`)
+// };
+
+// Function.prototype.myCall = function (obj, ...args) {
+//   const key = Symbol()
+//   obj[key] = this
+//   return obj[key](...args)
+// };
+
+// Example Usage
+// Introduce.myCall({
+//   name: "Farhan", age: 25
+// }, "coder", "50K");
+// Q=> 103 apply PollyFill.
+// Ans.
+// function Introduce(status, salary) {
+//   console.log(`Myself ${this.name}, I am ${this.age} year old and I am ${status} and my salary is ${salary}`)
+// };
+
+// Function.prototype.myApply = function (obj, ...args) {
+//   const key = Symbol()
+//   obj[key] = this
+//   return obj[key](...args)
+// };
+
+// // Example Usage
+// Introduce.myApply({
+//   name: "Farhan", age: 25
+// }, ["coder", "50K"]);
+// Q=> 104 Bind PollyFill.
+// Ans.
+function Introduce(status, salary) {
+  console.log(`Myself ${this.name}, I am ${this.age} year old and I am ${status} and my salary is ${salary}`)
+};
+
+Function.prototype.myBind = function (obj, ...args) {
+  const func = this
+  return function (...params) {
+    func.apply(obj, [...args, ...params])
+  };
+};
+
+// Example Usage
+const farhanIntro = Introduce.myBind({ name: "Farhan", age: 25 }, "single", 50000)
+console.log(farhanIntro());
+// Q=> 105 Updated Array Of Obj.
+// Ans.
+// const arr = [{ name: "Farhan", age: 25 }, { name: "Faisal", age: 30 }];
+// const updatedArr = arr.map((item) =>
+//   item.name === "Faisal" ? { ...item, name: "Updated Name" } : item
+// );
+
+// Example Usage.
+// console.log(updatedArr);
+// Q=> 106 findMissingNumber Of An Array
+// Ans.
+function findMissingNumber(arr) {
+  const n = arr.length + 1
+  const numSet = new Set()
+
+  for (let i = 1; i <= n; i++) {
+    numSet.add(i)
+  };
+
+  for (const ele of arr) {
+    numSet.delete(ele)
+  };
+
+  return [...numSet][0];
+};
+
+// Example Usage.
+console.log(findMissingNumber([1, 2, 4, 5]));
+// Q=> 107 Cheack Array Or Sorted Or Not
+// Ans.
+function isSorted(arr) {
+  return JSON.stringify(arr) === JSON.stringify([...arr].sort((a, b) => a - b))
+};
+
+// Example Usage
+console.log(isSorted([1, 2, 3, 4, 5]));
+console.log(isSorted([5, 3, 1]));
+// Q=> 108 change key as value in object.
+// Ans.
+// (a)
+function invert(obj) {
+  return Object.fromEntries(Object.entries(obj).map(([key, val]) => [val, key]))
+};
+
+console.log(invert({ name: "Farhan", age: 25 })); // Output: { Farhan: 'name', 25: 'age' }
+// (b)
+// const obj = { name: "Farhan", age: 25 }
+
+// function invert(obj) {
+//   let newObj = {};
+//   for (const ele in obj) {
+//     let value = obj[ele]
+//     newObj[value] = ele
+//   };
+//   return newObj
+// }
+
+// console.log(invert(obj));
+// Q=> 109 remove falsy value of an obj;
+// Ans.
+// (a)
+function removeFalsyVal() {
+  return Object.fromEntries(Object.entries(o).filter(([key, value]) => value))
+};
+
+// Example Usage
+console.log(removeFalsyVal({ name: "Farhan", isLogedIn: false }));
+// 2nd sul;
+function removeFalsyVal(o) {
+  let newObj = {};
+  for (const ele in o) {
+    if (o[ele]) {
+      newObj[ele] = o[ele]
+    };
+  };
+  return newObj
+};
+
+// Example Usage.
+console.log(removeFalsyVal({ name: "Farhan", isLogedIn: false, lastName: undefined }));
+// Q=> 110 Fing Max Value Of And Object.
+// Ans.
+// (a)
+function highValInObj(obj) {
+  return Math.max(...Object.value(obj))
+};
+// (b)
+// function highValInObj(o) {
+//   let maxKey = null; // Sabse badi value ka key yahan store hoga
+//   let maxValue = -Infinity; // Initially smallest number, to ensure comparison works
+
+//   for (const key in o) {
+//     if (o[key] > maxValue) {
+//       maxValue = o[key]; // Sabse badi value ko update karo
+//       maxKey = key; // Uski corresponding key ko store karo
+//     }
+//   }
+
+//   return { key: maxKey, value: maxValue }; // Output as object with key and value
+//   return Math.max(...Object.values(o));
+// };
+
+// Exmaple Usage
+console.log(highValInObj({ a: 1, b: 2, c: 3 })); // Output: { key: "c", value: 3 }
+// Day 12 => Next 10 Q file (14)
