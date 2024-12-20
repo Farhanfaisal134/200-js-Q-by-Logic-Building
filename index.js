@@ -1806,4 +1806,100 @@ function highValInObj(obj) {
 
 // Exmaple Usage
 console.log(highValInObj({ a: 1, b: 2, c: 3 })); // Output: { key: "c", value: 3 }
-// Day 12 => Next 10 Q file (14)
+// Day 12 => Next 10 Q file (new)
+// Q=> 111. Generator Function.
+// Ans.
+function* gen() {
+  yield 1
+  yield 2
+};
+
+// Example Usage
+const g = gen()
+console.log(g.next());
+console.log(g.next());
+console.log(g.next());
+// Q=> 112. Prototype in JavaScript.
+// Ans.
+// function Person(name) {
+//   this.name = name;
+// };
+
+// Person.prototype.greet = function () {
+//   return `Hi, ${this.name}`;
+// };
+
+// Example Usage
+// const user = new Person("Farhan")
+// console.log(user.greet());
+// Q=> 113.  Object.freeze() vs Object.seal()
+// Ans.
+// Object.freeze(): Object ko immutable banata hai (properties ko modify/add/delete nahi kar sakte).
+// Object.seal(): Existing properties ko modify kar sakte ho, nayi add/delete nahi kar sakte.
+// Q=> 114. Object.keys, Object.values, Object.entries ka fark
+// Ans.
+// Object.keys: Object ke keys ka array return karta hai.
+// Object.values: Object ke values ka array return karta hai.
+// Object.entries: Key-value pairs ka array return karta hai.
+
+// Example Usage
+// const obj = { a: 1, b: 2 };
+// Object.keys(obj); // ['a', 'b']
+// Object.values(obj); // [1, 2]
+// Object.entries(obj); // [['a', 1], ['b', 2]]
+// Q=> 115. Local Storage vs Session Storage
+// Ans.
+// Local Storage: Data permanently store hoti hai(clear manually karna padta hai).
+// Session Storage: Data tab close hone par delete ho jati hai.
+// Q=> 116. JavaScript vs TypeScript
+// Ans.
+// JavaScript: Dynamic typing, runtime errors.
+// TypeScript: Static typing, compile-time error checking.
+// Q=> 117. Promise.all, allSettled, any, and race ka farq
+// Ans.
+// Promise.all: Sab promises resolve hone par results deta hai; agar koi reject ho, fail ho jata hai.
+// Promise.allSettled: Sab promises ka outcome deta hai (resolved/rejected dono).
+// Promise.any: Pehla resolved promise return karta hai; sab reject ho to error deta hai.
+// Promise.race: Pehla completed promise (resolved/rejected) return karta hai.
+// Q=> 118. Polyfill in JavaScript
+// Ans.
+// Polyfill ek custom code hota hai jo purane browsers me naye JavaScript features ko implement karta hai.
+
+// Example Usage.
+if (!String.prototype.includes) {
+  String.prototype.includes = function (search) {
+    return this.indexOf(search) !== -1;
+  };
+};
+// Q=> 119. Convert a string input into a nested object (e.g., "a.b.c", "someValue" should return {a: {b: {c: "someValue"}}}).
+// Ans.
+function stringToNestedObject(str, value) {
+  const keys = str.split('.');
+  let result = {};
+
+  let current = result;
+  keys.forEach((key, index) => {
+    if (index === keys.length - 1) {
+      current[key] = value
+    } else {
+      current[key] = {}
+    }
+    current = current[key];
+  });
+  return result
+};
+
+// Example Usage.
+console.log(stringToNestedObject("a.b.c", "someValue")); // Output: {a: {b: {c: "someValue"}}}
+// Q=> 120. Write a function that converts an object into a query string (e.g., {name: "John", age: 30} to "name=John&age=30").
+// Ans.
+function objectToQueryString(obj) {
+  return Object.entries(obj)  // Object ko key-value pairs mein convert karte hain
+    .map(([key, value]) => `${key}=${value}`)  // Har pair ko "key=value" format mein convert karte hain
+    .join('&');  // In pairs ko '&' se join karte hain
+};
+
+console.log(objectToQueryString({ name: "John", age: 30 })); // Output: "name=John&age=30"
+
+// Day 12 => Next 10 Q file (14 + new)
+
