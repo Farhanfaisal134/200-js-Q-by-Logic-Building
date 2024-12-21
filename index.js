@@ -1900,6 +1900,132 @@ function objectToQueryString(obj) {
 };
 
 console.log(objectToQueryString({ name: "John", age: 30 })); // Output: "name=John&age=30"
+// Day 13 => Next 10 Q file (14 + new)
+// Q=> 121. remove particular key value of an array of objects.
+// Ans.
+// let arr = [
+//   {
+//     name: "Farhan",
+//     age: 25
+//   },
+//   {
+//     name: "Faisal",
+//     age: 26
+//   },
+// ];
 
-// Day 12 => Next 10 Q file (14 + new)
+// const removeObjItem = arr.map(({ age, ...rest }) => rest)
+// console.log(removeObjItem);
+// Q=> 122. sorting in array of objects.
+// Ans.
+// const arr = [{ name: "farhan" }, { name: "abbas" }]
+
+// arr.sort((a, b) => a.name > b.name ? 1 : -1) // -1 swap nhi karna 1 swap karna han
+// console.log(arr);
+// Q=> 123. print table by loop
+// Ans.
+// function printTable(n) {
+//   for (let i = 1; i <= 10; i++) {
+//     console.log(`n X ${i} = ${i * n}`);
+//   };
+// };
+
+// Example Usage
+// printTable(2);
+// Q=> 124. print table by recursion
+// Ans.
+// function tablePrint(n, multiplay = 1) {
+//   if (multiplay > 10) return
+//   console.log(`${n} X ${multiplay} = ${n * multiplay}`);
+//   tablePrint(n, multiplay + 1)
+// };
+
+// Example Usage
+// tablePrint(10);
+// Q=> 125. Sort an Array Without Using .sort().
+// Ans.
+function isSorting(arr) {
+  let n = arr.length;
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - 1 - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp
+      };
+    };
+  };
+  return arr
+};
+
+// Example Usage.
+console.log(isSorting([2, 1, 3]));
+// Q=> 126. Longest Substring Without Repeating Characters
+// Ans.
+function lengthOfLongestSubstring(s) {
+  let maxLength = 0; // Substring ki sabse badi length ko track karega
+  let charSet = new Set(); // Ek set jo unique characters ko store karega
+  let left = 0; // Window ka starting pointer
+
+  for (let right = 0; right < s.length; right++) {
+    while (charSet.has(s[right])) {
+      charSet.delete(s[left]); // Left se character hata dein
+      left++; // Pointer ko aage badha dein
+    }
+    charSet.add(s[right]);
+
+    maxLength = Math.max(maxLength, right - left + 1);
+  };
+
+  return maxLength;
+};
+
+// Example Usage
+console.log(lengthOfLongestSubstring("abcabcbb")); // Output: 3 ("abc")
+console.log(lengthOfLongestSubstring("bbbbb"));    // Output: 1 ("b")
+console.log(lengthOfLongestSubstring("pwwkew"));   // Output: 3 ("wke")
+// Q=> 127. Generate All Permutations of a String
+// Ans.
+function generatePermutations(str) {
+  let result = [];
+
+  function permute(prefix, remaining) {
+    if (remaining.length === 0) {
+      result.push(prefix); // Jab koi character nahi bacha, toh result mein prefix daal do
+    } else {
+      for (let i = 0; i < remaining.length; i++) {
+        permute(prefix + remaining[i], remaining.slice(0, i) + remaining.slice(i + 1)); // Recursion call
+      };
+    };
+  };
+
+  permute('', str);
+  return result;
+};
+
+// Example Usage.
+console.log(generatePermutations("abc"));
+// Q=> 128. Find the Kth Largest Element in an Array
+// Ans.
+function findKthLargest(arr, k) {
+  arr.sort((a, b) => b - a); // Array ko descending order mein sort karo
+  return arr[k - 1]; // Kth largest element ko return karo
+};
+
+// Example Usage
+console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)); // Output: 5
+// Q=> 129.
+// a = 10;
+// console.log(a);
+// var a; Guess Output;
+// Ans.
+
+// O/P => 10;
+// Q=> 130. Write code for mul(2)(3)(4) = 24.
+// Ans.
+const mul = (a) => (b) => (c) => a * b * c
+
+// Example Usage.
+console.log(mul(2)(3)(4));
+// Day 14 => Next 10 Q file (5)
 
