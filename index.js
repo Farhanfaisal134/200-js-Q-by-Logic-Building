@@ -2027,5 +2027,111 @@ const mul = (a) => (b) => (c) => a * b * c
 
 // Example Usage.
 console.log(mul(2)(3)(4));
-// Day 14 => Next 10 Q file (5)
+// Day 14 => Next 10 Q file (1,2);
+// Q=> 131. Convert First Lattter in UpperCase.
+// Ans.
+function taleCase(str) {
+  return str.split(" ").map((word) => word[0].toUpperCase() + word.slice(1)).join(" ")
+};
+
+// Example Usage.
+console.log(taleCase("hello world"));
+// Q=> 132. Find Seconds Largets Num Of An Array.
+// Ans.
+// function secondLargetFind(arr) {
+//   arr.sort((a, b) => b - a)
+//   return arr[1]
+// }
+
+// Example Usage.
+// console.log(secondLargetFind([10, 5, 8, 20]));
+// Q=> 133. Find Comman Ele In Given 2Arrays.
+// Ans.
+// function commonEle(arr1, arr2) {
+//   return arr1.filter((item) => arr2.includes(item))
+// };
+
+// Example Usage.
+// console.log(commonEle([1, 2, 3], [2, 3, 4]));
+// OutPut=>[2,3];
+// Q=> 134. isValidParentheses.
+// Ans.
+// function isValidParentheses(str) {
+//   const stack = [];
+//   const pairs = {
+//     "(": ")",
+//     "{": "}",
+//     "[": "]"
+//   };
+
+//   for (const ele of str) {
+//     if (pairs[ele]) {
+//       stack.push(ele)
+//     } else if (pairs[stack.pop()] !== ele) {
+//       return false
+//     }
+//   };
+//   return stack.length === 0;
+// };
+
+// Example Usage.
+// console.log(isValidParentheses("()"));
+// console.log(isValidParentheses("(}"));
+// Q=> 135. Fibonacci Sequance.
+// Ans.
+// function generateFibonacci(num) {
+//   const fib = [0, 1]
+//   for (let i = 2; i < num; i++) {
+//     fib.push(fib[i - 1] + fib[i - 2])
+//   };
+//   return fib
+// }
+
+// // Example usage:
+// console.log(generateFibonacci(5)); // Output: [0, 1, 1, 2, 3]
+// console.log(generateFibonacci(10)); // Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+// Q=> 136.
+// Ans.
+// function arrayToObject(arr, keyProperty) {
+//   return arr.reduce((obj, item) => {
+//     obj[item[keyProperty]] = item;
+//     return obj
+//   }, {})
+// };
+
+// // Example usage:
+// const arr = [
+//   { id: 1, name: "Alice" },
+//   { id: 2, name: "Bob" },
+//   { id: 3, name: "Charlie" }
+// ];
+
+// const result = arrayToObject(arr, "id");
+// console.log(result);
+// Output = {
+//   '1': { id: 1, name: 'Alice' },
+//   '2': { id: 2, name: 'Bob' },
+//   '3': { id: 3, name: 'Charlie' }
+// }
+// Q=> 137. Find First Duplicate Of An Array.
+// Ans.
+// function findFirstDup(arr) {
+//   const seen = new Set();
+//   for (const item of arr) {
+//     if (seen.has(item)) {
+//       return item
+//     }
+//     seen.add(item)
+//   };
+//   return -1
+// };
+
+// Example Usage.
+// console.log(findFirstDup([1, 2, 3, 4, 2, 5]));
+// Q=> 138.
+// Ans.
+// Q=> 139.
+// Ans.
+// Q=> 140.
+// Ans.
 
