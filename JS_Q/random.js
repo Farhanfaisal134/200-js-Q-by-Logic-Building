@@ -861,76 +861,6 @@
 // console.log(Object.values(result));
 
 // Q
-// Anagrams wo words hote hain jo same letters ko different order me rakhte hain.
-// Is problem me hume anagrams ko ek group me collect karna hai.
-
-// function groupAnagrams(words) {
-//   let map = {};
-
-//   for (let word of words) {
-//     let sorted = word.split('').sort().join(''); // Sort word
-//     map[sorted] = map[sorted] || []; // If not exist, create array
-//     map[sorted].push(word); // Push word in group
-//   };
-
-//   return Object.values(map); // Return grouped values
-//   return map
-// };
-
-// let words = ["eat", "tea", "tan", "ate", "nat", "bat"];
-// console.log(groupAnagrams(words));
-
-// Q
-// function flattenObject(obj, prefix = "") {
-//   let result = {};
-
-//   for (let [key, value] of Object.entries(obj)) {
-//     let newKey = prefix ? `${prefix}.${key}` : key;
-
-//     if (typeof value === "object" && value !== null) {
-//       Object.assign(result, flattenObject(value, newKey));
-//     } else {
-//       result[newKey] = value;
-//     };
-//   };
-
-//   return result;
-// };
-
-// let obj = {
-//   name: "lavi",
-//   id: 12,
-//   address: {
-//     city: "Delhi",
-//     location: { pin: 123, street: "mayurvihar" },
-//   },
-// };
-
-// console.log(flattenObject(obj));
-// O/P {
-//   name: "lavi",
-//   id: 12,
-//   "address.city": "Delhi",
-//   "address.location.pin": 123,
-//   "address.location.street": "mayurvihar"
-// }
-
-// Q
-// function flatArr(array) {
-//   let newArr = [];
-//   for (const ele of array) {
-//     if (Array.isArray(ele)) {
-//       newArr = newArr.concat(flatArr(ele));  // ✅ Correct way
-//     } else {
-//       newArr.push(ele);
-//     }
-//   }
-//   return newArr;
-// };
-
-// console.log(flatArr([[1, 2], [3, 4, [5, 6]], [7, [8, 9]]]));
-
-// Q
 // let arr = [1, 2]
 // console.log([].push(...arr));
 // [].push(...arr) ka return value push hone ke baad array.length return karta hai, na ke naye array.
@@ -1010,4 +940,52 @@
 
 // console.log(newStr); // Output: Fa1r2h3an
 
+// Q
+// console.log(22 > '9') // true
+// JavaScript comparison operators (>, <, >=, <=) type coercion apply karte hain.
+// Q
+// console.log(2 > 'abc') // O/p false
+// Analysis:
+// 'abc' ek string hai, jo number me convert hone ki koshish karega.
+// Number('abc') NaN (Not a Number) return karega.
+// Jab koi bhi number NaN se compare hota hai, hamesha false hota hai.
+
+// Q
+// console.log(55 && 3) // O/p 3
+// Logical AND (&&) first falsy value return karta hai. Agar sab values truthy hon, to last value return hoti hai.
+// Q
+// console.log(4||3) // o/p 4
+// Logical OR (||) pehli truthy value return karta hai.
+
+// Q
+// console.log([] + {});// O/p [object,object]
+// Step-by-Step Execution:
+// [] (empty array) ko string mein convert karega → "" (empty string).
+// {} (empty object) ko string mein convert karega → "[object Object]".
+// "" + "[object Object]" string concatenation karega.
+
+// Q
+// console.log(('b' + 'a' + +'a' + 'a').toLowerCase()); // 'banana'
+// +'a'
+// The unary plus (+) tries to convert 'a' into a number. Since 'a'
+// cannot be converted to a valid number, it becomes NaN (Not-a-Number).
+
+// 'ba' + NaN
+// When you concatenate a string ('ba') with NaN, it results in the string 'baNaN'.
+
+// Q
+// console.log([1, 2] + [3, 4]); // '1,23,4'
+
+// Q
+// {
+//   if (-1) {
+//     console.log("Hallo");
+//   } else {
+//     console.log("else");
+//   }
+//   console.log("cal");
+// }
+
+// Q
+// JavaScript dynamically typed language hai.
 
