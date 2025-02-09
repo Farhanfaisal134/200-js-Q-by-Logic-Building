@@ -988,4 +988,3 @@
 
 // Q
 // JavaScript dynamically typed language hai.
-

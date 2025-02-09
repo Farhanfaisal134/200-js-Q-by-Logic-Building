@@ -20,6 +20,7 @@
 //   return acc;
 // }, {});
 
+
 // console.log(Object.values(result));
 
 // Conclusion
@@ -163,24 +164,26 @@
 // console.log(getUniqueObjects(arr));
 
 // Q => 9 Find the max count of consecutive 1’s in an array ?
-// let arr = [1, 2, 3, 1, 2];
+// let arr = [1, 2, 3, 1, 2, 1, 1, 1]; // Example with multiple sequences of 1s
 
 // function maxOneCount(array) {
-//     let maxCount = 0, currentCount = 0;
+//     let maxCount = 0;
+//     let currentCount = 0;
 
 //     for (let num of array) {
 //         if (num === 1) {
 //             currentCount++;
-//             maxCount = Math.max(maxCount, currentCount);
 //         } else {
-//             currentCount = 0; // Reset count if not 1
+//             maxCount = Math.max(maxCount, currentCount); // Update maxCount *before* resetting
+//             currentCount = 0;
 //         }
 //     }
 
+//     maxCount = Math.max(maxCount, currentCount); // Check one last time after the loop (in case the last sequence is all 1s)
 //     return maxCount;
-// }
+// };
 
-// console.log(maxOneCount(arr)); // Output: 1
+// console.log(maxOneCount(arr)); // Output: 3 (Correct)
 
 // Q => 10 Create a function which will accepts two arrays arr1 and arr2.
 // The function should return true if every value in arr1 has its corresponding value squared in array2.
@@ -205,7 +208,3 @@
 
 // // Example usage:
 // console.log(compareArrays([1, 2, 3], [1, 4, 9])); // true
-// console.log(compareArrays([1, 2, 3], [1, 4, 2])); // false (3 squared is 9, not 2)
-// console.log(compareArrays([1, 2, 1], [1, 4, 1])); // true (frequency matters)
-// console.log(compareArrays([1, 2, 1], [1, 4])); // false (different lengths)
-// console.log(compareArrays([1, 2, 3], [9, 1, 4])) //true (order doesn't matter)
