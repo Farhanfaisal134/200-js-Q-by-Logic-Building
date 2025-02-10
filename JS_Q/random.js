@@ -200,8 +200,6 @@
 // arr.splice(0, 4)
 // console.log(arr);
 
-// JavaScript: Find Duplicate Values in an Array Efficiently! ?
-
 // Q
 // function abc() {
 //   console.log(abc.xyz);
@@ -425,22 +423,6 @@
 
 // ✅ window.a = 10 because var attaches to window.
 // ❌ window.b = undefined because let does not attach to window.
-
-// Q arr aur arr1 ko alternate order me merge
-// const arr = [1, 3, 5, 6, 7];
-// const arr1 = [2, 4];
-
-// const newArr = [];
-
-// let i = 0, j = 0;
-
-// // Jab tak dono arrays me elements hain
-// while (i < arr.length || j < arr1.length) {
-//   if (i < arr.length) newArr.push(arr[i++]); // Pehle arr ka element
-//   if (j < arr1.length) newArr.push(arr1[j++]); // Phir arr1 ka element
-// }
-
-// console.log(newArr);
 
 // Q
 // const obj = {}
@@ -831,36 +813,6 @@
 // console.log(modifiedSent);
 
 // Q
-// let arr = [
-//   { id: 1, value: 20 },
-//   { id: 2, value: 25 },
-//   { id: 3, value: 2 },
-//   { id: 1, value: 4 },
-//   { id: 2, value: 6 }
-// ];
-
-// let result = arr.reduce((acc, { id, value }) => {
-//   acc[id] = acc[id] || { id, value: 0 };
-//   acc[id].value += value;
-//   return acc;
-// }, {});
-
-// console.log(Object.values(result));
-
-// Conclusion
-// Tumhara original code sum kar raha hai, overwrite nahi kar raha.
-// Overwrite tab hoga jab acc[id] pe direct { id, value } assign kar diya jaye.
-// acc[id] = acc[id] || { id, value: 0 }; is wajah se purana value save ho raha hai.
-
-// Overwrite
-// let result = arr.reduce((acc, { id, value }) => {
-//   acc[id] = { id, value }; // Overwrite kar diya
-//   return acc;
-// }, {});
-
-// console.log(Object.values(result));
-
-// Q
 // let arr = [1, 2]
 // console.log([].push(...arr));
 // [].push(...arr) ka return value push hone ke baad array.length return karta hai, na ke naye array.
@@ -882,19 +834,6 @@
 // let b = ++a
 // console.log(a + b); // 42
 
-// Q Str Are Uniq Or Not
-// let str = "abcd"
-// let seen = new Set();
-// let uniq = true;
-// for (const ele of str) {
-//   if (seen.has(ele)) {
-//     uniq = false;
-//     break
-//   };
-//   seen.add(ele)
-// };
-
-// console.log(uniq);
 // Q
 // let a = "a" + 1 // a1
 // let b = "abc" / 2 // Nan
@@ -988,3 +927,4 @@
 
 // Q
 // JavaScript dynamically typed language hai.
+
