@@ -50,24 +50,23 @@
 
 // console.log(flatArr(arr)); // Output -> [1, 2, 3, 4, 6, 7]
 //Q=> 6
-// function flat(arr, n) {
-//   if (n === 0) return arr.slice();
-
+// function flat (array, n){
+//   if(n === 0) return array;
+  
 //   let flatarr = [];
-//   for (let i = 0; i < arr.length; i++) {
-//     if (Array.isArray(arr[i])) {
-//       const nested = flat(arr[i], n - 1);
-//       flatarr.push(...nested);
-//     } else {
-//       flatarr.push(arr[i]);
+//   for(const ele of array){
+//       if(Array.isArray(ele)){
+//           const nestead = flat(ele, n - 1);
+//           flatarr.push(...nestead)
+//       } else {
+//           flatarr.push(ele);
 //     };
 //   };
 //   return flatarr;
 // };
 
-// console.log(
-//   flat([1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]], 1)
-// );
+// console.log(flat([1, 2, 3, [4, 5, 6], [7, 8, [9, [10, 11]], 12], 
+// [13, 14, 15]], 3));
 //Q=> 7
 // obj flat
 // const obj = {
@@ -96,7 +95,7 @@
 
 // const uniq = [];
 
-// obj.map((item) => {
+// obj.forEach((item) => {
 //   if (uniq.some((obj) => obj.name === item.name) === false) {
 //     uniq.push(item);
 //   };
@@ -112,7 +111,7 @@
 
 // let newArr = [];
 
-// obj.map((item) => {
+// obj.forEach((item) => {
 //   let newObj = newArr.find((ele) => ele.Sno === item.Sno)
 //   if (newObj) {
 //     newObj = newObj.score += item.score

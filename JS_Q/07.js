@@ -37,25 +37,28 @@
 //   .catch((error) => console.log(error));
 //Q-> 3 Promise.any-> Matlab: Jaise hi koi promise pehle resolve hota hai, Promise.any uspe resolve ho jata hai.
 //      Agar sabhi reject ho jaayein, to ek AggregateError throw hota hai.
-// const p1 = new Promise((resolve) => setTimeout(resolve, 500, "P1 Done"));
-// const p2 = new Promise((resolve) => setTimeout(resolve, 100, "P2 Done"));
-// Promise.myAny = function (listOfPromise) {
+// const p1 = new Promise((resolve, reject) => setTimeout(reject, 500, "P1 Done"));
+// const p2 = new Promise((resolve, reject) => setTimeout(reject, 100, "P2 Done"));
+
+// Promise.myAny = function (listOfPromises) {
 //   return new Promise((res, rej) => {
-//     const result = []
-//     let c = 0
+//     let result = [];
+//     let count = 0;
+
 //     function handleError(index, status, value) {
-//       result[index] = { status, value }
-//       c++
-//       if (c === listOfPromise.length) {
-//         rej(new AggregateError(result))
+//       result[index] = { status, value };
+//       count++;
+//       if (count === listOfPromises.length) {
+//         rej(new AggregateError(result)); // Correct rejection with AggregateError
 //       }
-//     };
-//     for (let i = 0; i < listOfPromise.length; i++) {
-//       Promise.resolve(listOfPromise[i]).then(data => {
-//         res(data)
-//       }).catch(error => handleError(i, "rejected", error))
 //     }
-//   })
+
+//     for (let i = 0; i < listOfPromises.length; i++) {
+//       Promise.resolve(listOfPromises[i]) // Fixed index
+//         .then((data) => res(data))
+//         .catch((error) => handleError(i, "rejected", error));
+//     }
+//   });
 // };
 
 // Promise.myAny([p1, p2])

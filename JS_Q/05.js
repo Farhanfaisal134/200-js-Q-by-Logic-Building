@@ -1,31 +1,12 @@
-//Q => 1
-// const countChar = (word, char) => {
-//   word = word.toLowerCase()
-//   char = char.toLowerCase()
-
+// Q => 1
+// function countChar(str, char) {
 //   let count = 0;
-
-//   word.split('').map((item) => {
-//     if (item.includes(char)) {
-//       count++
+//   for (const ele of str) {
+//     if (ele.toLowerCase().includes(char.toLowerCase())) {
+//       count++;
 //     }
-//   })
+//   };
 //   return count;
-// }
-
-// console.log(countChar("MissIssippi", "I"));
-// -> ¡¡;
-// const countChar = (word, char) => {
-//   word = word.toLowerCase();
-//   char = char.toLowerCase();
-
-//   totalCount = word.split("").reduce((accum, curn) => {
-//     if (curn === char) {
-//       accum++
-//     };
-//     return accum
-//   }, 0);
-//   return totalCount;
 // };
 
 // console.log(countChar("MissIssippi", "I"));
@@ -153,6 +134,7 @@
 // function isUpperCase(char) {
 //   return char === char.toUpperCase()
 // };
+
 // console.log(isUpperCase("s"));
 //Q => 10
 // class ArrayWrapper {

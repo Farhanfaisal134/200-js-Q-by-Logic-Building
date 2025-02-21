@@ -112,32 +112,6 @@
 
 // console.log(uniq);
 
-// Q => 7 find duplicate obj
-// let arr = [
-//   { name: "sai" },
-//   { name: "Nang" },
-//   { name: "sai" },
-//   { name: "Nang" },
-//   { name: "111111" }
-// ];
-
-// function findDuplicateObj(arr) {
-//   let seen = new Set();
-//   let duplicates = [];
-
-//   arr.forEach(obj => {
-//     if (seen.has(obj.name)) {
-//       duplicates.push(obj); // Agar pehle se set me hai to duplicate hai
-//     } else {
-//       seen.add(obj.name); // Pehli baar name mila to set me add karo
-//     }
-//   });
-
-//   return duplicates;
-// }
-
-// console.log(findDuplicateObj(arr));
-
 // Q => 8 find Uniq obj
 // let arr = [
 //   { name: "sai" },

@@ -928,3 +928,81 @@
 // Q
 // JavaScript dynamically typed language hai.
 
+// Q
+// Promise.any() → Pehla fulfilled hone wala promise return karega, agar sab reject ho jayein to AggregateError throw karega.
+// Promise.race() → Pehla settled (fulfilled ya rejected) hone wala promise return karega.
+
+// Q for(;;) {
+// console.log("Loop")
+// }
+
+// for(;;) me condition missing hai, jo default true maan li jati hai.
+// Is wajah se loop kabhi terminate nahi hota, aur infinite loop ban jata hai.
+
+// Q 26 Which of the following is true about const variables?
+
+// a) Their values cannot be changed // If a const variable holds an object or array, its properties/elements can be modified.
+// b) They cannot be reassigned // const variables cannot be reassigned to a new value. ✅ Correct
+// c) They are always immutable // Only the reference is immutable, but objects/arrays inside are mutable (can be changed).
+// d) All of the above
+
+// Q
+// console.log(..."Hello") // H e l l o
+
+// Q
+// const obj = {a:'JS'};
+// const {a, a:b, a:c} = obj;
+// console.log(a,b,c); // O/P "JS" "JS" "JS"
+
+// Q
+// console.log(typeof undefined) // O/P undefined
+
+// Q
+// let arr = [1, 2, 3];
+
+// function modifyArray(array) {
+//   array.push(4);
+// }
+
+// modifyArray(arr.splice(1));
+// console.log(arr); // O/P [1]
+
+// Q
+// const a = [1, 2, 3, 4, 5];
+// const b = a.findIndex(x => x === 2);
+// console.log(b); // 1
+
+// Q
+// function foo() {
+//   let a = b = 0
+//   a++
+//   return a
+// }
+
+// foo()
+// console.log(typeof a)
+// console.log(typeof b)
+
+// Q
+//(function () {
+//   var a = b = 0
+//})();
+//console.log(a); // Error
+//console.log(b); // 0
+
+// Q
+// console.log(2 + 2 % 3); % ko prefer pahla kia jai ga 2 % 3 = 2;
+// Q
+// let foo = null;
+// console.log (foo === null);
+// console.log(typeof foo === 'object');
+
+// Q
+// console.log(1 + -"1" + 2)
+
+// Q 
+// console.log("A" - "B" + "2"); // NaN2
+
+// q
+// let x = 1;
+// console.log(++x + x++) // 4

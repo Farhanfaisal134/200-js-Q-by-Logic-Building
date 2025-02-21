@@ -18,22 +18,32 @@
 //   return arr1.filter((item) => arr2.includes(item))
 // };
 
-// console.log(commonEle([1, 2, 3], [2, 3, 4]));// OutPut=>[2,3]
+// console.log(commonEle([1, 2, 3], [2, 3, 4]));// OutPut => [2, 3];
+
+// Q =>
+// function uniqEle(arr1, arr2) {
+//     return [...arr1, ...arr2].filter(item =>
+//         !(arr1.includes(item) && arr2.includes(item))
+//     );
+// }
+
+// console.log(uniqEle([1, 2, 3], [2, 3, 4])); // [ 1, 4 ]
+
+// Q =>
+// let arr = [1, 2, 3, 4, 4, 3];
+// const result = arr.filter(item => arr.indexOf(item) === arr.lastIndexOf(item));
+// console.log(result); // Output: [1, 2] ✅
 // Q => 5
-// function eleAppearsInArrayCount(arr) {
-//   let obj = {}
-
-//   for (const ele of arr) {
-//     if (obj[ele]) {
-//       obj[ele] += 1
-//     } else {
-//       obj[ele] = (obj[ele] || 0) + 1
-//     }
-//   }
-//   return obj
-// };
-
-// console.log(eleAppearsInArrayCount([1, 2, 2, 3, 3, 3])); // Output: {1: 1, 2: 2, 3: 3}
+// function eleAppearsInArrayCount (array){
+//   let newObj = {};
+//   for(const num of array){
+//   newObj[num] ? newObj[num] += 1 : newObj[num] = 1;
+//   };
+//   return newObj;
+//   };
+  
+//   console.log(eleAppearsInArrayCount([1, 2, 2, 3, 3, 3]));
+//   // Output: {1: 1, 2: 2, 3: 3}
 // Q => 6
 // function findLongestWordInStr(words) {
 //   let result = words.split(" ").sort((a, b) => b.length - a.length)
@@ -63,11 +73,11 @@
 // console.log(isValidParentheses("(}"));
 // Q => 8
 // function generateFibonacci(num) {
-//   const fib = [0, 1]
+//   const fib = [0, 1];
 //   for (let i = 2; i < num; i++) {
 //     fib.push(fib[i - 1] + fib[i - 2])
 //   };
-//   return fib
+//   return fib;
 // }
 
 // // Example usage:
@@ -96,16 +106,13 @@
 //   '3': { id: 3, name: 'Charlie' }
 // }
 // Q => 10
-// function findFirstDup(arr) {
-//   const seen = new Set()
-//   for (const item of arr) {
-//     if (seen.has(item)) {
-//       return item;
-//     }
-//     seen.add(item)
+// function findFirstDup(nums) {
+//   let seen = new Set();
+//   for (const num of nums) {
+//     if (seen.has(num)) return num;
+//     seen.add(num);
 //   }
-
 //   return -1
-// }
+// };
 
 // console.log(findFirstDup([1, 2, 3, 4, 2, 5]));
