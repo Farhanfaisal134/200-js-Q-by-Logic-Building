@@ -7,7 +7,7 @@
 // console.log(longest);
 //Q =>2
 // find str ma 1 latter kitni bar han
-// let str = "Seema Vishwakarma";
+// let str = "Farhan Is A Best Coder";
 // let obj = {};
 
 // for (const ele of str) {
@@ -57,6 +57,7 @@
 // const calculate = new Calculator()
 // const result = calculate.add(4).multiply(10).subtraction(5).getValue()
 // console.log(result)
+
 //Q =>5
 // const arrData = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 // Array.prototype.myForEach = function (cb) {
@@ -65,6 +66,7 @@
 //   };
 // };
 // arrData.myForEach((item) => console.log(item));
+
 //Q =>6
 // Array.prototype.myMap = function (callback) {
 //   let newArr = [];
@@ -76,6 +78,7 @@
 
 // const arr = arrData.myMap(item => item);
 // console.log(arr);
+
 //Q =>7
 // Array.prototype.myFilter = function (callback) {
 //   let newArr = [];
@@ -89,6 +92,7 @@
 
 // const res = arrData.myFilter((element) => element > 4)
 // console.log(res);
+
 //Q =>8
 // Array.prototype.myReduce = function (cb, initValue) {
 //   let accumulator = initValue !== undefined ? initValue : this[0]; // Initial value
@@ -103,6 +107,7 @@
 
 // const result = arrData.myReduce((prev, curn) => prev + curn)
 // console.log(result);
+
 //Q =>9
 // Array.prototype.myFind = function (callback) {
 //   for (let i = 0; i < this.length; i++) {
@@ -114,6 +119,7 @@
 
 // const res = arrData.myFind((item) => item > 2)
 // console.log(res);
+
 //Q =>10
 // Array.prototype.mySome = function (callback) {
 //   for (let i = 0; i < this.length; i++) {
@@ -126,6 +132,7 @@
 
 // const res = arrData.mySome((item) => item > 5);
 // console.log(res);
+
 //Q =>11
 // Array.prototype.myEvery = function (callback) {
 //   for (let i = 0; i < this.length; i++) {
@@ -138,6 +145,7 @@
 
 // const res = arrData.myEvery((item) => item > 5)
 // console.log(res);
+
 //Q =>12
 // Array.prototype.last = function () {
 //   if (this.length == 0) {

@@ -1000,9 +1000,15 @@
 // Q
 // console.log(1 + -"1" + 2)
 
-// Q 
+// Q
 // console.log("A" - "B" + "2"); // NaN2
 
 // q
 // let x = 1;
 // console.log(++x + x++) // 4
+// console.log(null === null); // true
+// console.log({} == {}); // false
+// console.log(abc - xyz); abc not defind
+// console.log(NaN - NaN);  NaN
+// console.log(0 <= 1) // true
+// console.log([] == {}); // false

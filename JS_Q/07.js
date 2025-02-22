@@ -144,4 +144,31 @@
 // // Test the function
 // console.log(findLongestUniqueWord("abd addsa as fas jdle as"));  
 // Q => 9
+// Array of messages to log
+// const messages = ["First", "Second", "Third"];
+
+// const timers = [];
+// console.log(timers)
+// // Loop through each message and log it with delay
+// messages.forEach((msg, idx) => {
+// // setTimeout will log the message after (idx+1)*1000 milliseconds.
+//   timers[idx] = setTimeout(() => {
+//     console.log(msg);
+
+//     if (idx === timers.length - 1) {
+//       console.log("All messages logged. Cleaning up timers...");
+//       timers.length = 0;
+//     }
+//   }, 1000 * (idx + 1));
+// });
+
 // Q => 10
+// How can you create an alternate array from?
+// const arr = [2,4,6,8,10];
+
+// const result = arr.filter((item, idx) => idx % 2 === 0);
+// console.log(result)
+
+// Q => 11
+// let arr = [1, 2, 3];
+// let newArr = [...arr, 5, 6, 7, 8]; 
